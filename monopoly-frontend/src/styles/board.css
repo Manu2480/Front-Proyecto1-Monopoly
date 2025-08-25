@@ -1,12 +1,13 @@
+/*TABLERO*/
+
 /* Tablero estilo Monopoly - Cuadrado hueco */
 .monopoly-board {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
   grid-template-rows: repeat(11, 1fr);
   gap: 1px;
-  max-width: 700px;
-  max-height: 700px;
-  aspect-ratio: 1;
+  width: min(90vw, 90vh, 700px);
+  height: min(90vw, 90vh, 700px);
   margin: 20px auto;
   background: #2e7d32;
   border: 3px solid #1b5e20;
@@ -21,25 +22,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: clamp(0.6rem, 1.2vw, 0.8rem);
   text-align: center;
   position: relative;
-  min-height: 50px;
   padding: 2px;
 }
 
-/* Área central (vacía) */
+/* Área central (vacía) - ocupa todas las celdas interiores */
 .center-area {
-  background: #c8e6c9;
+  background: #4caf50;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Agregar logo o texto en el centro (opcional) */
+.center-area:nth-child(61) {
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.center-area:nth-child(61)::after {
+  content: "MONOPOLY";
+  position: absolute;
+  font-family: Arial, sans-serif;
+  letter-spacing: 2px;
+  opacity: 0.3;
 }
 
 /* Header de color de cada casilla */
 .tile-header {
   width: 100%;
-  height: 12px;
+  height: clamp(8px, 1.5vw, 15px);
   margin-bottom: 3px;
   border: 1px solid #ccc;
+  flex-shrink: 0;
 }
 
 /* Nombre de la casilla */
@@ -47,9 +69,14 @@
   padding: 1px;
   font-weight: bold;
   line-height: 1;
-  font-size: 0.7rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 /* Esquinas especiales más grandes */
@@ -57,28 +84,56 @@
 .tile[data-position="10"], 
 .tile[data-position="20"],
 .tile[data-position="30"] {
-  background: #ffeb3b;
+  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
   font-weight: bold;
-  font-size: 0.8rem;
+  color: #1b5e20;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Responsive para móviles */
+/* Responsive mejorado */
 @media (max-width: 768px) {
   .monopoly-board {
-    max-width: 90vw;
-    max-height: 90vw;
+    width: 95vw;
+    height: 95vw;
+    margin: 10px auto;
+    gap: 0.5px;
   }
   
   .tile {
-    font-size: 0.6rem;
-    min-height: 40px;
+    border: 1px solid #333;
+    padding: 1px;
   }
-  
-  .tile-name {
-    font-size: 0.55rem;
+}
+
+@media (max-width: 480px) {
+  .monopoly-board {
+    width: 98vw;
+    height: 98vw;
+    margin: 5px auto;
+    border: 2px solid #1b5e20;
   }
   
   .tile-header {
-    height: 8px;
+    height: 6px;
+    margin-bottom: 2px;
+  }
+  
+  .center-area:nth-child(61)::after {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  .monopoly-board {
+    width: 100vw;
+    height: 100vw;
+    margin: 0;
+    border: 1px solid #1b5e20;
+  }
+  
+  .tile-name {
+    -webkit-line-clamp: 2;
   }
 }
