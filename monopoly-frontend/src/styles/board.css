@@ -1,61 +1,84 @@
-/* Tablero estilo Monopoly */
+/* Tablero estilo Monopoly - Cuadrado hueco */
 .monopoly-board {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
   grid-template-rows: repeat(11, 1fr);
-  gap: 2px;
-  max-width: 800px;
+  gap: 1px;
+  max-width: 700px;
+  max-height: 700px;
   aspect-ratio: 1;
-  margin: 0 auto;
-  background: #c8e6c9;
-  border: 3px solid #2e7d32;
-  padding: 10px;
+  margin: 20px auto;
+  background: #2e7d32;
+  border: 3px solid #1b5e20;
+  padding: 5px;
 }
 
-/* Casillas del tablero */
+/* Casillas del borde */
 .tile {
   background: white;
-  border: 1px solid #333;
+  border: 2px solid #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-align: center;
   position: relative;
-  min-height: 60px;
+  min-height: 50px;
+  padding: 2px;
 }
 
+/* Área central (vacía) */
+.center-area {
+  background: #c8e6c9;
+  border: none;
+}
+
+/* Header de color de cada casilla */
 .tile-header {
   width: 100%;
-  height: 15px;
-  margin-bottom: 5px;
+  height: 12px;
+  margin-bottom: 3px;
   border: 1px solid #ccc;
 }
 
+/* Nombre de la casilla */
 .tile-name {
-  padding: 2px;
+  padding: 1px;
   font-weight: bold;
-  line-height: 1.1;
+  line-height: 1;
+  font-size: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Esquinas especiales */
-.tile:nth-child(1),
-.tile:nth-child(11),
-.tile:nth-child(21),
-.tile:nth-child(31) {
+/* Esquinas especiales más grandes */
+.tile[data-position="0"],
+.tile[data-position="10"], 
+.tile[data-position="20"],
+.tile[data-position="30"] {
   background: #ffeb3b;
   font-weight: bold;
+  font-size: 0.8rem;
 }
 
-/* Responsive */
+/* Responsive para móviles */
 @media (max-width: 768px) {
   .monopoly-board {
-    max-width: 100%;
-    font-size: 0.6rem;
+    max-width: 90vw;
+    max-height: 90vw;
   }
   
   .tile {
+    font-size: 0.6rem;
     min-height: 40px;
+  }
+  
+  .tile-name {
+    font-size: 0.55rem;
+  }
+  
+  .tile-header {
+    height: 8px;
   }
 }
