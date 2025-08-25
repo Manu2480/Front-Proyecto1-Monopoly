@@ -1,4 +1,4 @@
-/* Diseño del tablero */
+/*TABLERO*/
 
 /* Tablero estilo Monopoly - Cuadrado hueco */
 .monopoly-board {
@@ -46,19 +46,24 @@
   box-sizing: border-box;
 }
 
-/* Agregar logo en el centro */
+/* Logo MONOPOLY en el centro mejorado */
 .center-area:nth-child(61) {
   color: white;
   font-weight: bold;
-  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+  font-family: 'Arial Black', Arial, sans-serif;
 }
 
-.center-area:nth-child(61)::after {
+.center-area:nth-child(61)::before {
   content: "MONOPOLY";
   position: absolute;
-  font-family: Arial, sans-serif;
-  letter-spacing: 1px;
-  opacity: 0.4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 1;
 }
 
 /* Header de color de cada casilla */
@@ -119,6 +124,11 @@
   .tile-name {
     -webkit-line-clamp: 2;
   }
+  
+  .center-area:nth-child(61) {
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    letter-spacing: 1px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -139,8 +149,8 @@
     padding: 0.5px;
   }
   
-  .center-area:nth-child(61)::after {
-    font-size: 0.6rem;
+  .center-area:nth-child(61) {
+    font-size: clamp(0.6rem, 1.8vw, 1.2rem);
     letter-spacing: 0.5px;
   }
 }
@@ -157,5 +167,10 @@
   
   .tile-name {
     -webkit-line-clamp: 1;
+  }
+  
+  .center-area:nth-child(61) {
+    font-size: clamp(0.5rem, 1.5vw, 1rem);
+    letter-spacing: 0.2px;
   }
 }
