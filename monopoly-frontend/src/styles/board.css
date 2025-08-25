@@ -1,4 +1,4 @@
-/*TABLERO*/
+/* Diseño del tablero */
 
 /* Tablero estilo Monopoly - Cuadrado hueco */
 .monopoly-board {
@@ -6,26 +6,32 @@
   grid-template-columns: repeat(11, 1fr);
   grid-template-rows: repeat(11, 1fr);
   gap: 1px;
-  width: min(90vw, 90vh, 700px);
-  height: min(90vw, 90vh, 700px);
+  width: min(90vw, 90vh, 600px);
+  height: min(90vw, 90vh, 600px);
   margin: 20px auto;
   background: #2e7d32;
   border: 3px solid #1b5e20;
   padding: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Casillas del borde */
 .tile {
   background: white;
-  border: 2px solid #333;
+  border: 1px solid #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: clamp(0.6rem, 1.2vw, 0.8rem);
   text-align: center;
   position: relative;
   padding: 2px;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+  font-size: clamp(0.5rem, 0.8vw, 0.7rem);
 }
 
 /* Área central (vacía) - ocupa todas las celdas interiores */
@@ -37,31 +43,32 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  box-sizing: border-box;
 }
 
-/* Agregar logo o texto en el centro (opcional) */
+/* Agregar logo en el centro */
 .center-area:nth-child(61) {
-  background: #4caf50;
   color: white;
   font-weight: bold;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
 }
 
 .center-area:nth-child(61)::after {
   content: "MONOPOLY";
   position: absolute;
   font-family: Arial, sans-serif;
-  letter-spacing: 2px;
-  opacity: 0.3;
+  letter-spacing: 1px;
+  opacity: 0.4;
 }
 
 /* Header de color de cada casilla */
 .tile-header {
   width: 100%;
-  height: clamp(8px, 1.5vw, 15px);
-  margin-bottom: 3px;
+  height: clamp(6px, 1vw, 12px);
+  margin-bottom: 2px;
   border: 1px solid #ccc;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 /* Nombre de la casilla */
@@ -72,11 +79,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  word-break: break-word;
+  hyphens: auto;
+  min-height: 0;
 }
 
 /* Esquinas especiales más grandes */
@@ -87,7 +99,7 @@
   background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
   font-weight: bold;
   color: #1b5e20;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
 /* Responsive mejorado */
@@ -103,6 +115,10 @@
     border: 1px solid #333;
     padding: 1px;
   }
+  
+  .tile-name {
+    -webkit-line-clamp: 2;
+  }
 }
 
 @media (max-width: 480px) {
@@ -111,16 +127,21 @@
     height: 98vw;
     margin: 5px auto;
     border: 2px solid #1b5e20;
+    padding: 3px;
   }
   
   .tile-header {
-    height: 6px;
-    margin-bottom: 2px;
+    height: 4px;
+    margin-bottom: 1px;
+  }
+  
+  .tile {
+    padding: 0.5px;
   }
   
   .center-area:nth-child(61)::after {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -131,9 +152,10 @@
     height: 100vw;
     margin: 0;
     border: 1px solid #1b5e20;
+    padding: 2px;
   }
   
   .tile-name {
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
   }
 }
