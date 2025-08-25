@@ -1,0 +1,61 @@
+/* Tablero estilo Monopoly */
+.monopoly-board {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  gap: 2px;
+  max-width: 800px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  background: #c8e6c9;
+  border: 3px solid #2e7d32;
+  padding: 10px;
+}
+
+/* Casillas del tablero */
+.tile {
+  background: white;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  text-align: center;
+  position: relative;
+  min-height: 60px;
+}
+
+.tile-header {
+  width: 100%;
+  height: 15px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+}
+
+.tile-name {
+  padding: 2px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+/* Esquinas especiales */
+.tile:nth-child(1),
+.tile:nth-child(11),
+.tile:nth-child(21),
+.tile:nth-child(31) {
+  background: #ffeb3b;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .monopoly-board {
+    max-width: 100%;
+    font-size: 0.6rem;
+  }
+  
+  .tile {
+    min-height: 40px;
+  }
+}
